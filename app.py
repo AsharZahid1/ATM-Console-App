@@ -41,21 +41,22 @@ def loading_animation(text="Loading"):
         time.sleep(1.5)
 
 # Login form
+# Login form
 if not st.session_state.logged_in:
-    with st.form("login_form"):
-        st.subheader("🔐 Login")
-        acc_num = st.text_input("Account Number")
-        pin = st.text_input("PIN", type="password")
-        submitted = st.form_submit_button("Login")
-        if submitted:
-            for acc in accounts:
-                if acc.account_number == acc_num and acc.validate_pin(pin):
-                    st.session_state.logged_in = True
-                    st.session_state.account = acc
-                    loading_animation("Logging in")
-                    st.success("Login successful!")
-                    st.experimental_rerun()
+    st.subheader("🔐 Login")
+    acc_num = st.text_input("Account Number")
+    pin = st.text_input("PIN", type="password")
+    if st.button("Login"):
+        for acc in accounts:
+            if acc.account_number == acc_num and acc.validate_pin(pin):
+                st.session_state.logged_in = True
+                st.session_state.account = acc
+                loading_animation("Logging in")
+                st.success("Login successful!")
+                break
+        else:
             st.error("Invalid account number or PIN.")
+
 
 # Main menu
 else:
