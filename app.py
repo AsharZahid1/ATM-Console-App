@@ -82,8 +82,7 @@ else:
                 st.error("Insufficient funds.")
 
     elif option == "Logout":
-        loading_animation("Logging out")
-        st.session_state.logged_in = False
-        st.session_state.account = None
-        st.success("Logged out successfully.")
-        st.experimental_rerun()
+    loading_animation("Logging out")
+    st.session_state.logged_in = False
+    st.session_state.account = None
+    st.success("Logged out successfully. Please refresh or re-login.")
